@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nieprzewidywalna pszczo³a</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+var okr±g = function (x, y, promieñ, wype³nijOkr±g) {
+  kontekst.beginPath();
+  kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+  if (wype³nijOkr±g) {
+    kontekst.fill();
+  } else {
+    kontekst.stroke();
+  }
+};
+var rysujPszczo³ê = function (x, y) {
+  kontekst.lineWidth = 2;
+  kontekst.strokeStyle = "Black";
+  kontekst.fillStyle = "Gold";
+
+  okr±g(x, y, 8, true);
+  okr±g(x, y, 8, false);
+  okr±g(x - 5, y - 11, 5, false);
+  okr±g(x + 5, y - 11, 5, false);
+  okr±g(x - 2, y - 1, 2, false);
+  okr±g(x + 2, y - 1, 2, false);
+};
+var aktualizuj = function (wspó³rzêdna) {
+  var przesuniêcie = Math.random() * 4 - 2;
+  wspó³rzêdna += przesuniêcie;
+
+  if (wspó³rzêdna > 200) {
+    wspó³rzêdna = 200;
+  }
+  if (wspó³rzêdna < 0) {
+    wspó³rzêdna = 0;
+  }
+
+  return wspó³rzêdna;
+};
+
+var p³ótno = document.getElementById("p³ótno");
+var kontekst = p³ótno.getContext("2d");
+
+var x = 100;
+var y = 100;
+
+setInterval(function () {
+  kontekst.clearRect(0, 0, 200, 200);
+
+  rysujPszczo³ê(x, y);
+  x = aktualizuj(x);
+  y = aktualizuj(y);
+
+  kontekst.strokeRect(0, 0, 200, 200);
+}, 30);
+
+    </script>
+</body>
+</html>

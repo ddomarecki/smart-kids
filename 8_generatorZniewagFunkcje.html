@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .insult {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 70%;
+            height: 100px;
+            background-color: rgb(35, 47, 214);
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .insult:hover {
+            background-color: rgb(6, 6, 100);
+        }
+
+        .insult .inner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="insult">
+        <div class="inner">Random Insult Generator</div>
+    </div>
+    <script>
+        var randomWord = function (word) {
+            return word[Math.floor(Math.random() * word.length)]
+        }
+        function randomInsult() {
+            var randomBodyParts = ["leg", "nose", "eye", "ear", "arm", "stomach"];
+            var randomAdjectives = ["stinky", "stupid", "ugly", "awful", "dirty"];
+            var randomAnimals = ["monkey", "tapeworm", "pig", "wasp"];
+
+            var sentence = "Your " + randomWord(randomBodyParts) + " is like " + randomWord(randomAdjectives) + " " + randomWord(randomAnimals) + "!!!";
+           /* var sentenceUsingJoin = ["Your", randomWord(randomBodyParts), "is like", randomWord(randomAdjectives), randomWord(randomAnimals) + "!!!"].join(
+                " "); */
+                
+            document.querySelector(".insult .inner").textContent = sentence; //innerHTML też możliwe
+        }
+
+        document.querySelector(".insult").addEventListener("click", randomInsult);
+    </script>
+</body>
+
+</html>

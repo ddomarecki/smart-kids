@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+        //dla ambitnych 3
+
+        var plotno = document.getElementById("plotno");
+        var ctx = plotno.getContext("2d");
+
+        $("html").mousemove(function (zdarzenie) {
+            console.log("x ma wartość: " + zdarzenie.pageX + " a y: " + zdarzenie.pageY);
+            ctx.beginPath();
+            ctx.arc(zdarzenie.pageX, zdarzenie.pageY, 3, 0, Math.PI * 2, false);
+            ctx.stroke();
+        });
+    </script>
+
+</body>
+
+</html>

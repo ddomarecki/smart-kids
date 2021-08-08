@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        //szubienica plus rysowanie ludzika
+
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        kontekst.lineWidth = 4;
+
+        //Utwórz tablicę ze słowami
+        var slowa = ["javascript", "monter", "niesamowity", "lampart"];
+
+        //Wybierz losowe słowo
+        var slowo = slowa[Math.floor(Math.random() * slowa.length)];
+
+        //Skonfiguruj tablicę z odpowiedziami
+        var odpowiedzi = [];
+        for (var i = 0; i < slowo.length; i++) {
+            odpowiedzi[i] = "_";
+        }
+
+        var pozostaleLitery = slowo.length;
+        var blednyStrzal = 0;
+        var error = 0;
+
+        function wisielec(error) {
+            switch (error) {
+                case 1:
+                    kontekst.strokeRect(50, 50, 20, 20);
+                    kontekst.beginPath();
+                    break;
+                case 2:
+                    kontekst.moveTo(60, 70);
+                    kontekst.lineTo(60, 120);
+                    kontekst.stroke();
+                    break;
+                case 3:
+                    kontekst.moveTo(60, 85);
+                    kontekst.lineTo(40, 75);
+                    kontekst.stroke();
+                    break;
+                case 4:
+                    kontekst.moveTo(60, 85);
+                    kontekst.lineTo(80, 75);
+                    kontekst.stroke();
+                    break;
+                case 5:
+                    kontekst.moveTo(60, 120);
+                    kontekst.lineTo(40, 150);
+                    kontekst.stroke();
+                    break;
+                case 6:
+                    kontekst.moveTo(60, 120);
+                    kontekst.lineTo(80, 150);
+                    kontekst.stroke();
+                    break;
+            }
+        }
+        //Główna pętla gry
+        while (pozostaleLitery > 0) {
+            //Pokaż graczowi bieżący wynik
+            alert(odpowiedzi.join(" "));
+
+            //Wczytaj strzał użytkownika
+            var strzal = prompt(
+                "podaj literę lub kliknij Anuluj, aby zakończyć grę."); //w przypadku anuluj zmienna ma wartość null
+            if (strzal === null) {
+                //Wyjdz z glownej petli gry
+                break;
+            } else if (strzal.length !== 1) {
+                alert("Proszę podaj tylko jedną literę.");
+            } else if (error >= 7) {
+                alert("koniec gry!");
+                break;
+            } else {
+                //zaktualizuj stan gry na podstawie strzału
+                blednyStrzal = 0;
+                wisielec(error);
+                for (var j = 0; j < slowo.length; j++) {
+                    if (slowo[j] === strzal) {
+                        odpowiedzi[j] = strzal;
+                        pozostaleLitery--;
+                    } else if (slowo[j] !== strzal) {
+                        blednyStrzal++;
+                        if (blednyStrzal === slowo.length) {
+                            error++;
+                            console.log(error);
+                        }
+                    }
+                }
+            }
+
+            //koniec glownej petli gry
+        }
+
+        //Pokaz odpowiedz i zloz graczowi gratulacje
+        alert(odpowiedzi.join(" "));
+        if (error < 7) {
+            alert("Dobra robota! Szukane słowo to " + slowo);
+        }
+    </script>
+
+</body>
+
+</html>

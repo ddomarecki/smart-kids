@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="glownyNaglowek">Hello wordl!</h1>
+    <h1>Hello</h1>
+    <h2 class="h">Klasa h2</h2>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        //var nowyTekstNaglowka = prompt("Prosze wpisac nowa tresc naglowka:");
+        var nowyTekstNaglowka = "Nowy akapit";
+        $("#glownyNaglowek").text(nowyTekstNaglowka);
+        $("h1").text("TEN TEKST ZARAZ ZNIKNIE").fadeOut(3000).fadeIn(2000);
+
+        $(".h").text("Tutaj animacja inna").slideUp(1000).slideDown(1000);
+
+    </script>
+</body>
+</html>

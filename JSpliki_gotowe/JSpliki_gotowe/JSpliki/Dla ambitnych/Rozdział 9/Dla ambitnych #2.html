@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zabawa z DOM</title>
+</head>
+
+<body>
+    <h1 id="g³ównyNag³ówek">Hello world!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+    var czasZanikania;
+    for (var i = 0; i < 5; i++) {
+      czasZanikania = (i + 1) * 1000;
+      $("#g³ównyNag³ówek").fadeOut(czasZanikania / 2).fadeIn(czasZanikania / 2);
+    }
+    </script>
+   </body>
+</html>

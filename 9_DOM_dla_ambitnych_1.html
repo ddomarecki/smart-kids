@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    <h2>Jakiś element</h2>
+    <h3>Element trzeci</h3>
+    <script>
+        var friends = ["Tomek", "Piotr", "Radek", "Marek", "Karol"];
+        for (var i = 0; i < friends.length; i++) {
+            $("body").append("<p>" + friends[i] + "</p>");
+        }
+        $("p").hide(0).fadeIn(1000);
+        $("h1").text("Moi przyjaciele");
+        $("p").append(" ma zapach!");
+
+        var czasZnikania;
+        for (var j = 0; j < 5; j++) {
+            czasZnikania = (i + 1) * 1000;
+            $("h1").fadeOut(czasZnikania / 2).fadeIn(czasZnikania / 2);
+        }
+
+        $("h2").fadeOut(1000).delay(5000).fadeIn(1000);
+
+        $("h3").fadeTo(2000, 0.2);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+
+    <script>
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+
+        //wypełnianie ścieżek
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+
+        kontekst.strokeStyle = "Red";
+        kontekst.beginPath();
+        kontekst.moveTo(10,10);
+        kontekst.lineTo(60,20);
+        kontekst.lineTo(70,10);
+        kontekst.lineTo(70,60);
+        kontekst.stroke();
+
+        kontekst.fillStyle = "SkyBlue";
+        kontekst.beginPath();
+        kontekst.moveTo(100, 100);
+        kontekst.lineTo(100, 60);
+        kontekst.lineTo(130, 30);
+        kontekst.lineTo(160, 60);
+        kontekst.lineTo(160, 100);
+        kontekst.lineTo(100, 100);
+        kontekst.fill();
+    </script>
+
+</body>
+
+</html>

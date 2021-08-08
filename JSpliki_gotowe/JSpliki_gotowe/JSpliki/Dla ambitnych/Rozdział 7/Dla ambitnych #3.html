@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Szubienica!</title>
+</head>
+<body>
+    <h1>Szubienica!</h1>
+    <script>
+    // Utwórz tablicê ze s³owami
+    var s³owa = [
+      "javascript",
+      "monter",
+      "niesamowity",
+      "lampart"
+    ];
+
+    // Wybierz losowe s³owo
+    var s³owo = s³owa[Math.floor(Math.random() * s³owa.length)];
+
+    // Skonfiguruj tablicê z odpowiedziami
+    var odpowiedzi = [];
+    for (var i = 0; i < s³owo.length; i++) {
+      odpowiedzi[i] = "_";
+    }
+
+    var pozosta³eLitery = s³owo.length;
+    var limitStrza³ów = 20;
+
+    // G³ówna pêtla gry
+    while (pozosta³eLitery > 0 && limitStrza³ów > 0) {
+      // Poka¿ graczowi bie¿±cy wynik
+      alert(odpowiedzi.join(" "));
+
+      // Wczytaj strza³ u¿ytkownika
+      var strza³ = prompt("Podaj literê lub kliknij Anuluj, aby zakoñczyæ grê.");
+      if (strza³ === null) {
+        // Wyjd¼ z g³ównej pêtli gry
+        break;
+      } else if (strza³.length !== 1) {
+        alert("Proszê podaj tylko jedn± literê.");
+      } else {
+        limitStrza³ów--;
+        strza³ = strza³.toLowerCase();
+        // Zaktualizuj stan gry na podstawie strza³u
+        for (var j = 0; j < s³owo.length; j++) {
+          if (s³owo[j] === strza³) {
+            odpowiedzi[j] = strza³;
+            pozosta³eLitery--;
+          }
+        }
+      }
+    // Koniec g³ównej pêtli gry
+    }
+
+    // Poka¿ odpowied¼ i z³ó¿ graczowi gratulacje
+    alert(odpowiedzi.join(" "));
+
+    if (limitStrza³ów > 0) {
+      alert("Dobra robota! Szukane s³owo to " + s³owo);
+    } else {
+      alert("Wielka szkoda! Szukane s³owo to " + s³owo);
+    }
+
+    </script>
+</body>
+</html>

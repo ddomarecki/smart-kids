@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auta</title>
+    <style>
+        .meta {
+            position: absolute;
+            left: 328px;
+            top: 45px;
+            width: 1px;
+            height: 255px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Klik!</h1>
+    <div class="meta"></div>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        var Auto = function (x, y) {
+            this.x = x;
+            this.y = y;
+            // this.szybkosc = 5;
+            this.konsola = function () {
+                console.log("2")
+            };
+            this.rysuj();
+
+        };
+
+        //w przeglądarce teraz wpisujemy:
+        //var tesla = new Auto(10,20);
+        //tesla
+        //Auto{x: 10, y: 20}
+        //słowo kluczowe new to dla JS informacja, że wywołujemy konstruktor, aby utworzyć nowy obiekt.
+        //powyżej tworzymy obiekt auto o nazwie tesla.
+
+        //kod new Auto(10, 20) nakazuje interpretatorowi JS aby, używając konstruktora Auto, utworzył obiekt,
+        //przesłał argumenty 10 i 20 do właściwości x i y i zwrócił ten obiekt. Ten zwrócony 
+        // obiekt przypisujemy później zmiennej tesla za pomocą instrukcji var tesla.
+
+        Auto.prototype.rysuj = function () {
+            var autoHtml = '<img src="http://nostarch.com/images/car.png">';
+
+            this.autoElement = $(autoHtml);
+
+            this.autoElement.css({
+                position: "absolute",
+                left: this.x,
+                top: this.y
+            });
+
+            $("body").append(this.autoElement);
+
+        };
+
+        Auto.prototype.wPrawo = function (odleglosc) {
+            this.x += odleglosc;
+
+            this.autoElement.css({
+                left: this.x,
+                top: this.y
+            });
+        };
+
+        Auto.prototype.wLewo = function (odleglosc) {
+            this.x -= odleglosc;
+
+            this.autoElement.css({
+                left: this.x,
+                top: this.y
+            });
+        };
+
+        Auto.prototype.wGore = function (odleglosc) {
+            this.y -= odleglosc;
+            this.autoElement.css({
+                left: this.x,
+                top: this.y
+            });
+        };
+
+        Auto.prototype.wDol = function (odleglosc) {
+            this.y += odleglosc;
+            this.autoElement.css({
+                left: this.x,
+                top: this.y
+            });
+        };
+
+        var tesla = new Auto(50, 20);
+        var nissan = new Auto(50, 200);
+
+
+        var idP = setInterval(function () {
+            if (tesla.x < 200 && nissan.x < 200) {
+                tesla.wPrawo(Math.random() * 5);
+                nissan.wPrawo(Math.random() * 5);
+            }
+        }, 30);
+
+        //tesla.rysuj();
+        // nissan.rysuj();
+
+        /* 
+        w tym przypadku używamy konstruktora Auto do utworzenia dwóch obiektów auto, jednego ze 
+        współrzędnymi (20, 20), a drugiego o współrzędnych (100, 200), a następnie używamy metody
+        rysujAuto, aby narysować oba w przeglądarce.
+        */
+
+        // tesla.wPrawo();
+        // tesla.wPrawo();
+        // tesla.wPrawo();
+
+        //var idP = setInterval(nissan.wPrawo, 4000);
+        //stop: 
+        //clearInterval(idP);
+        /*
+                var idP = setInterval(function () {
+                    tesla.wPrawo();
+                }, 1000);
+
+        */
+        //$("h1").click(function(){tesla.wPrawo()});
+    </script>
+</body>
+
+</html>

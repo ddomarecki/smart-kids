@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mousemove</title>
+</head>
+
+<body>
+    <h1 id="naglowek">Hello world</h1>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        // var stopAnimacji = function () {
+        //     clearInterval(IdPrzedzialu);
+        // }
+        var klikniecia = 0;
+        $("h1").click(function(){
+            clearInterval(IdPrzedzialu);
+            var IdP = setInterval(przesuwajNaglowek, 25)
+            klikniecia++;
+            if (klikniecia >= 10) {
+                kierunek = "stop";
+                clearInterval(IdPrzedzialu);
+                clearInterval(IdP);
+                $("h1").text("Gratulacje, wygrałeś!")
+            
+            }
+        });
+        var przesuniecieZLewej = 0;
+        var przesuniecieZGory = 0;
+        var kierunek = "prawo";
+
+        var przesuwajNaglowek = function () {
+            if (kierunek == "prawo" && przesuniecieZLewej < 200) {
+                $("#naglowek").offset({
+                    left: przesuniecieZLewej
+                });
+                przesuniecieZLewej++;
+            }
+            if (przesuniecieZLewej >= 200 && kierunek == "prawo") {
+                $('#naglowek').offset({
+                    top: przesuniecieZGory
+                });
+                przesuniecieZGory++;
+            }
+            if (przesuniecieZGory >= 200) {
+                kierunek = "lewo";
+            }
+            if (przesuniecieZGory >= 200 && kierunek == "lewo") {
+                $('#naglowek').offset({
+                    left: przesuniecieZLewej
+                })
+                przesuniecieZLewej--;
+            }
+            if (przesuniecieZLewej <= 0) {
+                kierunek = "gora";
+               
+            }
+
+            if (kierunek == "gora") {
+                $('#naglowek').offset({
+                    top: przesuniecieZGory,
+                    left: 0
+                })
+                przesuniecieZGory--;
+                
+            }
+            if (przesuniecieZGory <= 0 && kierunek == "gora") {
+                kierunek = "prawo";
+            }
+         
+
+            //if (przesuniecieZLewej <= 0 && kierunek == "gora")
+        }
+
+
+        var IdPrzedzialu = setInterval(przesuwajNaglowek, 30);
+    </script>
+</body>
+
+</html>

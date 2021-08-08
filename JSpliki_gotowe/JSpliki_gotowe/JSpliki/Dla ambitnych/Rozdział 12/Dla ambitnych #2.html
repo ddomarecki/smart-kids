@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auta</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+    var Auto = function (x, y) {
+      this.x = x;
+      this.y = y;
+      this.szybko¶æ = 5;
+      this.rysuj();
+    };
+
+    Auto.prototype.rysuj = function () {
+      var autoHtml = '<img src="http://nostarch.com/images/car.png">';
+
+      this.elementAuto = $(autoHtml);
+
+      this.elementAuto.css({
+        position: "absolute",
+        left: this.x,
+        top: this.y
+      });
+
+      $("body").append(this.elementAuto);
+    };
+
+    Auto.prototype.wPrawo = function () {
+      this.x += this.szybko¶æ;
+
+      this.elementAuto.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    Auto.prototype.wLewo = function () {
+      this.x -= this.szybko¶æ;
+
+      this.elementAuto.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    Auto.prototype.wGórê = function () {
+      this.y -= this.szybko¶æ;
+
+      this.elementAuto.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    Auto.prototype.wDó³ = function () {
+      this.y += this.szybko¶æ;
+
+      this.elementAuto.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    var tesla = new Auto(20, 20);
+    var nissan = new Auto(100, 200);
+    </script>
+</body>
+</html>

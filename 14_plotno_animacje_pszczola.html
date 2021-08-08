@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animacja na plotnie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="200" height="200"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        //funkcja rysująca puste lub pełne kółka
+        var okrag = function (x, y, promien, wypelnijOkrag) {
+            kontekst.beginPath();
+            kontekst.arc(x, y, promien, 0, Math.PI * 2, false);
+            if (wypelnijOkrag) {
+                kontekst.fill();
+            } else {
+                kontekst.stroke();
+            }
+        };
+
+        //funkcja rysująca pszczołę, używa funkcji okrąg
+        var rysujPszczole = function (x, y) {
+            kontekst.lineWidth = 2;
+            kontekst.strokeStyle = "Black";
+            kontekst.fillStyle = "Gold";
+
+            okrag(x, y, 8, true);
+            okrag(x, y, 8, false);
+            okrag(x - 5, y - 11, 5, false);
+            okrag(x + 5, y - 11, 5, false);
+            okrag(x - 2, y - 1, 2, false);
+            okrag(x + 2, y - 1, 2, false);
+        }
+
+        //aktualizowanie współrzędnych, położenia pszczoły
+        var aktualizuj = function (wspolrzedna) {
+            var przesuniecie = Math.random() * 4 - 2;
+            wspolrzedna += przesuniecie;
+
+            if (wspolrzedna > 200) {
+                wspolrzedna = 200;
+            }
+
+            if (wspolrzedna < 0) {
+                wspolrzedna = 0;
+            }
+            return wspolrzedna;
+        };
+
+        //animowanie nieprzewidywalnej pszczoly
+
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+
+        var x = 100;
+        var y = 100;
+        var a = 50;
+        var b = 50;
+
+        setInterval(function () {
+            kontekst.clearRect(0, 0, 200, 200);
+
+            rysujPszczole(x, y);
+            rysujPszczole(a, b);
+
+            a = aktualizuj(a);
+            b = aktualizuj(b);
+
+            x = aktualizuj(x);
+            y = aktualizuj(y);
+
+            kontekst.strokeRect(0, 0, 200, 200);
+
+        }, 30);
+    </script>
+
+</body>
+
+</html>

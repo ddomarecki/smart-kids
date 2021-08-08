@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+
+    kontekst.fillStyle = "SkyBlue";
+    kontekst.beginPath();
+    kontekst.moveTo(100, 100);
+    kontekst.lineTo(100, 60);
+    kontekst.lineTo(130, 30);
+    kontekst.lineTo(160, 60);
+    kontekst.lineTo(160, 100);
+    kontekst.lineTo(100, 100);
+    kontekst.fill();
+    </script>
+</body>
+</html>

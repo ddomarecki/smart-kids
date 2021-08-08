@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+
+    <script>
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+
+        //dla ambitnych 2
+        var punkty = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+        var tajemniczePunkty = [[50,50], [50, 100], [25,120], [100,50], [70,90], [100,90], [70, 120]];
+
+        //funkcja do rysowanie punktów według wzoru z tablicy
+        function rysujPunkty(punkty) {
+            var plotno = document.getElementById("plotno");
+            var ctx = plotno.getContext("2d");
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(punkty[0][0],punkty[0][1]);
+            for (var i = 1; i < punkty.length; i++) {
+                console.log(punkty[i][0]);
+                console.log(punkty[i][1]);
+                ctx.lineTo(punkty[i][0],punkty[i][1]);
+            }
+            ctx.stroke();
+        }
+        rysujPunkty(punkty);
+        rysujPunkty(tajemniczePunkty);
+    </script>
+
+</body>
+
+</html>

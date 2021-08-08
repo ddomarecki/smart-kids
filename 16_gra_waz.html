@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gra waz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        var szerokosc = plotno.width;
+        var wysokosc = plotno.height;
+
+        var rozmiarBloku = 10;
+        var szerokoscWBlokach = szerokosc / rozmiarBloku;
+        var wysokoscWBlokach = wysokosc / rozmiarBloku;
+
+        var wynik = 0;
+
+        var rysujObramowanie = function () {
+            kontekst.fillStyle = "Gray";
+            kontekst.fillRect(0, 0, szerokosc, rozmiarBloku);
+            kontekst.fillRect(0, wysokosc - rozmiarBloku, szerokosc, rozmiarBloku);
+            kontekst.fillRect(0, 0, rozmiarBloku, szerokosc);
+            kontekst.fillRect(szerokosc - rozmiarBloku, 0, rozmiarBloku, wysokosc);
+        }
+
+        var rysujWynik = function () {
+            kontekst.font = "20px Courier";
+            kontekst.fillStyle = "Black";
+            kontekst.textAlign = "left";
+            kontekst.textBaseline = "top";
+            kontekst.fillText("Wynik: " + wynik, rozmiarBloku, rozmiarBloku);
+        }
+
+        var koniecGry = function () {
+            clearInterval(IdPrzedzialu);
+            kontekst.font = "60px Courier";
+            kontekst.fillStyle = "Black";
+            kontekst.textAlign = "center";
+            kontekst.textBaseline = "middle";
+            kontekst.fillText("Game Over", szerokosc / 2, wysokosc / 2);
+        }
+
+
+
+        /*
+                kontekst.textBaseline = "top";
+                kontekst.textAlign = "left";
+
+                kontekst.font = "20px Courier"
+                kontekst.fillText("Courier", 50, 50);
+
+                kontekst.font = "24px Comic Sans MS";
+                kontekst.fillText("Comic Sans", 50, 100);
+
+                kontekst.font = "18px Arial";
+                kontekst.fillText("Arial", 50, 150);
+        */
+        /*
+                var IdPrzedzialu = setInterval(function () {
+                    kontekst.clearRect(0, 0, szerokosc, wysokosc);
+                    rysujWynik();
+                    waz.przesun();
+                    waz.narysuj();
+                    jablko.narysuj();
+                    rysujObramowanie();
+                }, 100);
+        */
+    </script>
+
+</body>
+
+</html>

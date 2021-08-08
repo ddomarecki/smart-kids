@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sterowanie za pomocą klawiszy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+
+        var nazwyKlawiszy = {
+            32: "spacja",
+            37: "lewa",
+            38: "gora",
+            39: "prawa",
+            40: "dol",
+            16: "shift",
+            13: "enter",
+            8: "backspace",
+            18: "alt"
+        };
+
+        $("body").keydown(function(zdarzenie) {
+            console.log(nazwyKlawiszy[zdarzenie.keyCode]);
+            console.log(zdarzenie.keyCode);
+        });
+    
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Programowanie interaktywne</title>
+</head>
+
+<body>
+    <h1 id="nag³ówek">Hello world!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+var obs³ugaKlikniêcia = function (zdarzenie) {
+  console.log("Klikniêcie! " + zdarzenie.pageX + " " + zdarzenie.pageY);
+};
+
+$("h1").click(obs³ugaKlikniêcia);
+    </script>
+</body>
+</html>

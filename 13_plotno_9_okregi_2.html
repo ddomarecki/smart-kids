@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+
+    <script>
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+
+        //okręgi cz. 2
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+
+        var okrag = function (x, y, promien) {
+            kontekst.beginPath();
+            kontekst.arc(x, y, promien, 0, Math.PI * 2, false);
+            kontekst.stroke();
+        }
+
+        kontekst.lineWidth = 4;
+
+        kontekst.strokeStyle = "Red";
+        okrag(100, 100, 10);
+
+        kontekst.strokeStyle = "Orange";
+        okrag(100, 100, 20);
+
+        kontekst.strokeStyle = "Yellow";
+        okrag(100, 100, 30);
+
+        kontekst.strokeStyle = "Green";
+        okrag(100, 100, 40);
+
+        kontekst.strokeStyle = "Blue";
+        okrag(100, 100, 50);
+
+        kontekst.strokeStyle = "Purple";
+        okrag(100, 100, 60);
+
+    </script>
+
+</body>
+
+</html>

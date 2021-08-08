@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+
+    <script>
+        //ludzik
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        kontekst.lineWidth = 4;
+        kontekst.strokeRect(50, 50, 20, 20);
+        kontekst.beginPath();
+
+        kontekst.moveTo(60, 70);
+        kontekst.lineTo(60, 120);
+
+        kontekst.moveTo(60, 85);
+        kontekst.lineTo(40, 75);
+
+        kontekst.moveTo(60, 85);
+        kontekst.lineTo(80, 75);
+
+        kontekst.moveTo(60, 120);
+        kontekst.lineTo(40, 150);
+
+        kontekst.moveTo(60, 120);
+        kontekst.lineTo(80, 150);
+        kontekst.stroke();
+    </script>
+
+</body>
+
+</html>

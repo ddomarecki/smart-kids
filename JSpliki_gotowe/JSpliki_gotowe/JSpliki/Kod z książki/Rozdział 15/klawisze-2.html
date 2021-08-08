@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sterowanie za pomoc± klawiszy</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="400" height="400"></canvas>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+var p³ótno = document.getElementById("p³ótno");
+var kontekst = p³ótno.getContext("2d");
+var szeroko¶æ = p³ótno.width;
+var wysoko¶æ = p³ótno.height;
+var okr±g = function (x, y, promieñ, wype³nijOkr±g) {
+  kontekst.beginPath();
+  kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+  if (wype³nijOkr±g) {
+    kontekst.fill();
+  } else {
+    kontekst.stroke();
+  }
+};
+
+// Konstruktor Pi³ka
+
+var Pi³ka = function () {
+  this.x = szeroko¶æ / 2;
+  this.y = wysoko¶æ / 2;
+  this.xSzybko¶æ = 5;
+  this.ySzybko¶æ = 0;
+};
+
+// Aktualizuj pozycjê pi³ki na podstawie jej szybkoœ¶ci
+Pi³ka.prototype.przesuwaj = function () {
+  this.x += this.xSzybko¶æ;
+  this.y += this.ySzybko¶æ;
+
+  if (this.x < 0) {
+    this.x = szeroko¶æ;
+  } else if (this.x > szeroko¶æ) {
+    this.x = 0;
+  } else if (this.y < 0) {
+    this.y = wysoko¶æ;
+  } else if (this.y > wysoko¶æ) {
+    this.y = 0;
+  }
+};
+
+// Narysuj pi³kê w jej bie¿±cej pozycji
+Pi³ka.prototype.rysuj = function () {
+  okr±g(this.x, this.y, 10, true);
+};
+
+// Ustaw kierunek pi³ki na podstawie ³añcucha
+Pi³ka.prototype.ustawKierunek = function (kierunek) {
+  if (kierunek === "góra") {
+    this.xSzybko¶æ = 0;
+    this.ySzybko¶æ = -5;
+  } else if (kierunek === "dó³") {
+    this.xSzybko¶æ = 0;
+    this.ySzybko¶æ = 5;
+  } else if (kierunek === "lewa") {
+    this.xSzybko¶æ = -5;
+    this.ySzybko¶æ = 0;
+  } else if (kierunek === "prawa") {
+    this.xSzybko¶æ = 5;
+    this.ySzybko¶æ = 0;
+  } else if (kierunek === "stop") {
+    this.xSzybko¶æ = 0;
+    this.ySzybko¶æ = 0;
+  }
+};
+
+// Utwórz obiekt pi³ka
+var pi³ka = new Pi³ka();
+
+// Obiekt do przekszta³cania kodów klawiszy na nazwy dzia³añ
+var dzia³aniaKlawiszy = {
+  32: "stop",
+  37: "lewa",
+  38: "góra",
+  39: "prawa",
+  40: "dó³"
+};
+
+// Funkcja obs³ugi zdarzenia keydown,
+// wywo³ywana dla ka¿dego naciœniêcia klawisza
+$("body").keydown(function (zdarzenie) {
+  var kierunek = dzia³aniaKlawiszy[zdarzenie.keyCode];
+  pi³ka.ustawKierunek(kierunek);
+});
+
+// Funkcja odpowiedzialna za animacjê, wywo³ywana co 30 ms
+setInterval(function () {
+  kontekst.clearRect(0, 0, szeroko¶æ, wysoko¶æ);
+
+  pi³ka.rysuj();
+  pi³ka.przesuwaj();
+
+  kontekst.strokeRect(0, 0, szeroko¶æ, wysoko¶æ);
+}, 30);
+
+
+
+    </script>
+</body>
+</html>

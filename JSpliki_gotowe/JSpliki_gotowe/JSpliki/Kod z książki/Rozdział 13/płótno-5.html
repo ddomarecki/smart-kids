@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+    kontekst.strokeStyle = "Turquoise";
+    kontekst.lineWidth = 4;
+    kontekst.beginPath();
+    kontekst.moveTo(10, 10);
+    kontekst.lineTo(60, 60);
+    kontekst.moveTo(60, 10);
+    kontekst.lineTo(10, 60);
+    kontekst.stroke();
+    </script>
+</body>
+</html>

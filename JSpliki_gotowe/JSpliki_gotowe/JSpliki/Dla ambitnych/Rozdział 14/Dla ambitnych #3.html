@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odbijaj±ca siê pi³ka</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="400" height="400"></canvas>
+
+    <script>
+    var Pi³ka = function () {
+      this.x = 100;
+      this.y = 100;
+      this.xSzybko¶æ = (Math.random() * 10) - 5;
+      this.ySzybko¶æ = (Math.random() * 10) - 5;
+    };
+
+    var okr±g = function (x, y, promieñ, wype³nijOkr±g) {
+      kontekst.beginPath();
+      kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+      if (wype³nijOkr±g) {
+        kontekst.fill();
+      } else {
+        kontekst.stroke();
+      }
+    };
+
+    Pi³ka.prototype.rysuj = function () {
+      okr±g(this.x, this.y, 3, true);
+    };
+
+    Pi³ka.prototype.przesuwaj = function () {
+      this.x += this.xSzybko¶æ;
+      this.y += this.ySzybko¶æ;
+    };
+
+    Pi³ka.prototype.sprawdzajKolizje = function () {
+      if (this.x < 0 || this.x > szeroko¶æ) {
+        this.xSzybko¶æ = -this.xSzybko¶æ;
+      }
+      if (this.y < 0 || this.y > wysoko¶æ) {
+        this.ySzybko¶æ = -this.ySzybko¶æ;
+      }
+    };
+
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+
+    var szeroko¶æ = p³ótno.width;
+    var wysoko¶æ = p³ótno.height;
+
+    var pi³ki = [];
+    for (var i = 0; i < 10; i++) {
+      pi³ki[i] = new Pi³ka();
+    }
+
+    setInterval(function () {
+      kontekst.clearRect(0, 0, szeroko¶æ, wysoko¶æ);
+
+      for (var i = 0; i < pi³ki.length; i++) {
+        pi³ki[i].rysuj();
+        pi³ki[i].przesuwaj();
+        pi³ki[i].sprawdzajKolizje();
+      }
+
+      kontekst.strokeRect(0, 0, szeroko¶æ, wysoko¶æ);
+    }, 30);
+    </script>
+</body>
+</html>

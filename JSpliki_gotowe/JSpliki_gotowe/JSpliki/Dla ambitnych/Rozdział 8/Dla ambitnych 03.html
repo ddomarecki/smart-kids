@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Szubienica!</title>
+</head>
+<body>
+    <h1>Szubienica!</h1>
+    <script>
+    var wybierzS³owo = function () {
+      var s³owa = [
+        "javascript",
+        "monter",
+        "niesamowity",
+        "lampart"
+      ];
+
+      return s³owa[Math.floor(Math.random() * s³owa.length)];
+    };
+
+    var zbudujTablicêZOdpowiedziami = function (s³owo) {
+      var odpowiedzi = [];
+      for (var i = 0; i < s³owo.length; i++) {
+        odpowiedzi[i] = "_";
+      }
+
+      return odpowiedzi;
+    };
+
+    var poka¿Bie¿±cyWynik = function (odpowiedzi) {
+      alert(odpowiedzi.join(" "));
+    };
+
+    var wczytajStrza³ = function () {
+      return prompt("Podaj literê lub kliknij Anuluj, aby zakoñczyæ grê.");
+    };
+
+    var aktualizujStanGry = function (strza³, s³owo, odpowiedzi) {
+      var wyst±pienia = 0;
+      for (var j = 0; j < s³owo.length; j++) {
+        if (s³owo[j] === strza³) {
+          odpowiedzi[j] = strza³;
+          wyst±pienia++;
+        }
+      }
+
+      return wyst±pienia;
+    };
+
+    var poka¿Odpowied¼IPogratulujGraczowi = function (odpowiedzi) {
+      poka¿Bie¿±cyWynik(odpowiedzi);
+      alert("Dobra robota! Szukane s³owo to " + odpowiedzi.join(""));
+    };
+
+    var s³owo = wybierzS³owo();
+    var odpowiedzi = zbudujTablicêZOdpowiedziami(s³owo);
+    var pozosta³eLitery = s³owo.length;
+
+    while (pozosta³eLitery > 0) { poka¿Bie¿±cyWynik(odpowiedzi); var strza³ = wczytajStrza³();
+      if (strza³ === null) {
+        break;
+      } else if (strza³.length !== 1) {
+        alert("Proszê podaj tylko jedn± literê.");
+      } else {
+        var prawid³oweStrza³y = aktualizujStanGry(strza³, s³owo, odpowiedzi);
+        pozosta³eLitery -= prawid³oweStrza³y;
+      }
+    }
+
+    poka¿Odpowied¼IPogratulujGraczowi(odpowiedzi);
+    </script>
+</body>
+</html>

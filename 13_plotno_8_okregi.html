@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+
+    <script>
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+
+        //okręgi
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        kontekst.lineWidth = 2;
+        kontekst.strokeStyle = "Green";
+
+        kontekst.beginPath();
+        kontekst.arc(50, 50, 20, 0, Math.PI / 2, false);
+        kontekst.stroke();
+
+        kontekst.beginPath();
+        kontekst.arc(100, 50, 20, 0, Math.PI, false);
+        kontekst.stroke();
+
+        kontekst.beginPath();
+        kontekst.arc(150, 50, 20, 0, Math.PI * 2, false);
+        kontekst.fillStyle = "Red"; // kolor wypełnienia okręgu
+        kontekst.fill();            // wypełnienie okręgu
+        kontekst.stroke();
+        
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            font-size: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="glownyNaglowek">Hello wordl!</h1>
+    <h1>Hello</h1>
+    <h2 class="h">Klasa h2</h2>
+    <p>Nowy element p</p>
+    <span>lorewm    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?lorewm    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?lorewm    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?lorewm    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?lorewm    Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, alias nobis! Blanditiis, dolores quas dolorum perferendis ipsam ab libero vero necessitatibus reprehenderit enim aut beatae possimus distinctio consectetur quidem exercitationem?</span>
+    
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        //var nowyTekstNaglowka = prompt("Prosze wpisac nowa tresc naglowka:");
+        var nowyTekstNaglowka = "Nowy akapit";
+        $("#glownyNaglowek").text(nowyTekstNaglowka);
+        $("h1").text("TEN TEKST ZARAZ ZNIKNIE").fadeOut(4000);
+
+        $(".h").text("Tutaj animacja inna").slideUp(1000).slideDown(1000);
+        $("span").hide(4000);
+        for (var i = 0; i < 5; i++) {
+            $("p").fadeOut(1000);
+            $("p").fadeIn(1000);
+        }
+        $("body").append("<p>TOP JEST NOWY AKAPIT</p>");
+
+        
+    </script>
+</body>
+
+</html>

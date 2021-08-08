@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Znajdź ukryty skarb!</title>
+</head>
+
+<body>
+    <h1 id="naglowek">Znajdź ukryty skarb!</h1>
+    <img id="mapa" width=400 height=400 src="http://nostarch.com/images/treasuremap.png">
+    <p id="odleglosc"></p>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        //wylosuj liczbę z przedziału od 0 do wartości zmiennej rozmiar minus 1
+        var uzyskajLosowaLiczbe = function (rozmiar) {
+            return Math.floor(Math.random() * rozmiar);
+        };
+
+        //Oblicz odległość między kliknięciem a celem
+        var obliczOdleglosc = function (zdarzenie, cel) {
+            var roznicaX = zdarzenie.offsetX - cel.x;
+            var roznicaY = zdarzenie.offsetY - cel.y;
+            return Math.sqrt((roznicaX * roznicaX) + (roznicaY * roznicaY));
+        };
+
+        //Uzyskaj łańcuch reprezentujący odległość
+        var skonstruujPodpowiedz = function (odleglosc) {
+            if (odleglosc < 10) {
+                return "Parzy";
+            } else if (odleglosc < 20) {
+                return "Gorąco";
+            } else if (odleglosc < 40) {
+                return "Ciepło";
+            } else if (odleglosc < 80) {
+                return "Letnio";
+            } else if (odleglosc < 160) {
+                return "Zimno";
+            } else if (odleglosc < 320) {
+                return "Mróz";
+            } else {
+                return "Syberia";
+            }
+        };
+
+        //Ustawiamy nasze zmienne
+        var szerokosc = 400;
+        var wysokosc = 400;
+        var klikniecia = 0;
+
+        //Wylosuj miejsce ukrycia skarbu
+        var cel = {
+            x: uzyskajLosowaLiczbe(szerokosc),
+            y: uzyskajLosowaLiczbe(wysokosc)
+        };
+
+        //Skojarz funkcje obslugi klikniecia z elementem img
+        $("#mapa").click(function (zdarzenie) {
+            klikniecia++;
+            //oblicz odleglosc miedzy kliknieciem (zdarzeniem) a celem (skarbem)
+            var odleglosc = obliczOdleglosc(zdarzenie, cel);
+
+            //Na podstawie odleglosci wybierz podpowiedz
+            var podpowiedz = skonstruujPodpowiedz(odleglosc);
+
+            //Zaktualizuj element #odleglosc nowym tekstem podpowiedzi
+            $("#odleglosc").text(podpowiedz);
+
+            //jeśli klikniecie bylo dostatecznie blisko, poinformuj o wygranej
+            if (odleglosc < 8) {
+                alert("Skarb został znaleziony po " + klikniecia + " kliknięciach!");
+            }
+        });
+    </script>
+</body>
+
+</html>

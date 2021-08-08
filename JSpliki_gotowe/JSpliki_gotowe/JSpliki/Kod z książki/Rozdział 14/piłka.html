@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Odbijaj±ca siê pi³ka</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+var Pi³ka = function () {
+  this.x = 100;
+  this.y = 100;
+  this.xSzybko¶æ = -2;
+  this.ySzybko¶æ = 3;
+};
+var okr±g = function (x, y, promieñ, wype³nijOkr±g) {
+  kontekst.beginPath();
+  kontekst.arc(x, y, promieñ, 0, Math.PI * 2, false);
+  if (wype³nijOkr±g) {
+    kontekst.fill();
+  } else {
+    kontekst.stroke();
+  }
+};
+
+Pi³ka.prototype.rysuj = function () {
+  okr±g(this.x, this.y, 3, true);
+};
+Pi³ka.prototype.przesuwaj = function () {
+  this.x += this.xSzybko¶æ;
+  this.y += this.ySzybko¶æ;
+};
+Pi³ka.prototype.sprawdzajKolizje = function () {
+  if (this.x < 0 || this.x > 200) {
+    this.xSzybko¶æ = -this.xSzybko¶æ;
+  }
+  if (this.y < 0 || this.y > 200) {
+    this.ySzybko¶æ = -this.ySzybko¶æ;
+  }
+};
+var p³ótno = document.getElementById("p³ótno");
+var kontekst = p³ótno.getContext("2d");
+
+var pi³ka = new Pi³ka();
+
+setInterval(function () {
+  kontekst.clearRect(0, 0, 200, 200);
+
+  pi³ka.rysuj();
+  pi³ka.przesuwaj();
+  pi³ka.sprawdzajKolizje();
+
+  kontekst.strokeRect(0, 0, 200, 200);
+}, 30);
+
+    </script>
+</body>
+</html>

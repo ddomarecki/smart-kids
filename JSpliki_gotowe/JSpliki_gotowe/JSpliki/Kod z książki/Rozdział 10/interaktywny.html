@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Programowanie interaktywne</title>
+</head>
+
+<body>
+    <h1 id="nag³ówek">Hello world!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+var przesuniêcieZLewej = 0;
+
+var przesuwajNag³ówek = function () {
+  $("#nag³ówek").offset({ left: przesuniêcieZLewej });
+
+  przesuniêcieZLewej++;
+
+  if (przesuniêcieZLewej > 200) {
+    przesuniêcieZLewej = 0;
+  }
+};
+
+setInterval(przesuwajNag³ówek, 30);
+    </script>
+</body>
+</html>

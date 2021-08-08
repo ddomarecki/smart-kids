@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Programowanie interaktywne</title>
+</head>
+
+<body>
+    <h1 id="nag³ówek">Hello world!</h1>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+    var kierunek = 'right';
+    var przesuniêcie = 0;
+
+    $("#nag³ówek").offset({ left: przesuniêcie, top: przesuniêcie });
+
+    var przesuwajnag³ówek = function () {
+      if (kierunek === 'right') {
+        $("#nag³ówek").offset({ left: przesuniêcie });
+        przesuniêcie++;
+        if (przesuniêcie > 200) {
+          przesuniêcie = 0;
+          kierunek = 'down';
+        }
+      } else if (kierunek === 'down') {
+        $("#nag³ówek").offset({ top: przesuniêcie });
+        przesuniêcie++;
+        if (przesuniêcie > 200) {
+          przesuniêcie = 200;
+          kierunek = 'left';
+        }
+      } else if (kierunek === 'left') {
+        $("#nag³ówek").offset({ left: przesuniêcie });
+        przesuniêcie--;
+        if (przesuniêcie < 0) {
+          przesuniêcie = 200;
+          kierunek = 'up';
+        }
+      } else if (kierunek === 'up') {
+        $("#nag³ówek").offset({ top: przesuniêcie });
+        przesuniêcie--;
+        if (przesuniêcie < 0) {
+          przesuniêcie = 0;
+          kierunek = 'right';
+        }
+      }
+    };
+
+    setInterval(przesuwajnag³ówek, 30);
+    </script>
+</body>
+</html>

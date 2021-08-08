@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Szubienica!</h1>
+    <script>
+        //Utwórz tablicę ze słowami
+        var slowa = ["javascript", "monter", "niesamowity", "lampart"];
+
+        //Wybierz losowe słowo
+        var slowo = slowa[Math.floor(Math.random() * slowa.length)];
+
+        //Skonfiguruj tablicę z odpowiedziami
+        var odpowiedzi = [];
+        for (var i = 0; i < slowo.length; i++) {
+            odpowiedzi[i] = "_";
+        }
+
+        var pozostaleLitery = slowo.length;
+
+        //Główna pętla gry
+        while (pozostaleLitery > 0) {
+            //Pokaż graczowi bieżący wynik
+            alert(odpowiedzi.join(" "));
+
+            //Wczytaj strzał użytkownika
+            var strzal = prompt("podaj literę lub kliknij Anuluj, aby zakończyć grę."); //w przypadku anuluj zmienna ma wartość null
+            if (strzal === null) {
+                //Wyjdz z glownej petli gry
+                break;
+            } else if (strzal.length !== 1) {
+                alert("Proszę podaj tylko jedną literę.");
+            } else {
+                //zaktualizuj stan gry na podstawie strzału
+                for (var j = 0; j < slowo.length; j++) {
+                    if (slowo[j] === strzal) {
+                        odpowiedzi[j] = strzal;
+                        pozostaleLitery--; 
+                    }
+                }
+            }
+            //koniec glownej petli gry
+        }
+
+        //Pokaz odpowiedz i zloz graczowi gratulacje
+        alert(odpowiedzi.join(" "));
+        alert("Dobra robota! Szukane słowo to " + slowo);
+    </script>
+</body>
+</html>

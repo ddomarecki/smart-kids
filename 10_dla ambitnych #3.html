@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Programowanie interaktywne</title>
+</head>
+
+<body>
+  <h1 id="nag��wek">Hello world!</h1>
+
+  <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+  <script>
+    var kierunek = "right";
+    var przesuni� cie = 0;
+    var d� ugo�� Przedzia� u = 120;
+    var klikni� cia = 0;
+
+    $("#nag��wek").offset({
+      left: przesuni� cie,
+      top: przesuni� cie
+    });
+
+    var przesuwajNag�� wek = function () {
+      if (kierunek === "right") {
+        $("#nag��wek").offset({
+          left: przesuni� cie
+        });
+        przesuni� cie++;
+        if (przesuni� cie > 200) {
+          przesuni� cie = 0;
+          kierunek = "down";
+        }
+      } else if (kierunek === "down") {
+        $("#nag��wek").offset({
+          top: przesuni� cie
+        });
+        przesuni� cie++;
+        if (przesuni� cie > 200) {
+          przesuni� cie = 200;
+          kierunek = "left";
+        }
+      } else if (kierunek === "left") {
+        $("#nag��wek").offset({
+          left: przesuni� cie
+        });
+        przesuni� cie--;
+        if (przesuni� cie < 0) {
+          przesuni� cie = 200;
+          kierunek = "up";
+        }
+      } else if (kierunek === "up") {
+        $("#nag��wek").offset({
+          top: przesuni� cie
+        });
+        przesuni� cie--;
+        if (przesuni� cie < 0) {
+          przesuni� cie = 0;
+          kierunek = "right";
+        }
+      }
+    };
+
+    var idPrzedzia� u = setInterval(przesuwajNag�� wek, d� ugo�� Przedzia� u);
+
+    $("#nag��wek").click(function () {
+      clearInterval(idPrzedzia� u);
+      d� ugo�� Przedzia� u /= 2;
+      klikni� cia++;
+
+      if (klikni� cia > 10) {
+        $("#nag��wek").text("Wygra�e�.");
+      } else {
+        idPrzedzia� u = setInterval(przesuwajNag�� wek, d� ugo�� Przedzia� u)
+
+      }
+    });
+  </script>
+</body>
+
+</html>

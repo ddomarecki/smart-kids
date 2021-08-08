@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sterowanie za pomoc± klawiszy</title>
+</head>
+<body>
+    <canvas id="p³ótno" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+    var nazwyKlawiszy = {
+      32: "spacja",
+      37: "lewa",
+      38: "góra",
+      39: "prawa",
+      40: "dó³"
+    };
+
+    $("body").keydown(function (zdarzenie) {
+      console.log(nazwyKlawiszy[zdarzenie.keyCode]);
+    });
+    </script>
+</body>
+</html>

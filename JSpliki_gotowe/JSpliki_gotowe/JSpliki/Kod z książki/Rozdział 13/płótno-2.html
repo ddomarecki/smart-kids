@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>P³ótno</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+    var p³ótno = document.getElementById("p³ótno");
+    var kontekst = p³ótno.getContext("2d");
+    for (var i = 0; i < 8; i++) {
+      kontekst.fillRect(i * 10, i * 10, 10, 10);
+    }
+    </script>
+</body>
+</html>

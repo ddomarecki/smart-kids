@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animacja na plotnie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="200" height="200"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        var szerokosc = plotno.width;
+        var wysokosc = plotno.width;
+
+       var kolory = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
+       var wybierzLosowyKolor = function () {
+            return kolory[Math.floor(Math.random() * kolory.length)];
+        } 
+
+        var Pilka = function () {
+            this.x = 100;
+            this.y = 100;
+            this.kolor = wybierzLosowyKolor();
+            this.xSzybkosc = (Math.random() * 10) - 5;
+            this.ySzybkosc = (Math.random() * 10) - 5;
+        }
+
+        var okrag = function (x, y, kolor, promien, wypelnijOkrag) {
+            kontekst.beginPath();
+            kontekst.arc(x, y, promien, 0, Math.PI * 2, false);
+            if (wypelnijOkrag) {
+                kontekst.fillStyle = kolor;
+                kontekst.fill();
+            } else {
+                kontekst.stroke();
+            }
+        };
+
+        Pilka.prototype.rysuj = function () {
+            okrag(this.x, this.y, this.kolor, 3, true);
+        }
+
+        Pilka.prototype.przesuwaj = function () {
+            this.x += this.xSzybkosc;
+            this.y += this.ySzybkosc;
+        }
+
+        Pilka.prototype.sprawdzajKolizje = function () {
+            if (this.x < 0 || this.x > szerokosc) {
+                this.xSzybkosc = -this.xSzybkosc;
+            }
+            if (this.y < 0 || this.y > wysokosc) {
+                this.ySzybkosc = -this.ySzybkosc;
+            }
+        };
+
+        var pilki = [];
+
+        for (var i = 0; i < 40; i++) {
+            pilki[i] = new Pilka();
+        }
+
+        //var pilka = new Pilka();
+
+        setInterval(function () {
+            kontekst.clearRect(0, 0, szerokosc, wysokosc);
+
+            for (var j = 0; j < 40; j++) {
+                pilki[j].rysuj();
+                pilki[j].przesuwaj();
+                pilki[j].sprawdzajKolizje();
+            }
+            kontekst.strokeRect(0, 0, szerokosc, wysokosc);
+        }, 30);
+    </script>
+
+</body>
+
+</html>

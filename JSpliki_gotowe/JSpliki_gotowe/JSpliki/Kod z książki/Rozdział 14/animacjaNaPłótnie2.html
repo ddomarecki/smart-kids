@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animacja na p³ótnie</title>
+</head>
+
+<body>
+    <canvas id="p³ótno" width="200" height="200"></canvas>
+
+    <script>
+var p³ótno = document.getElementById("p³ótno");
+var kontekst = p³ótno.getContext("2d");
+
+var rozmiar = 0;
+
+setInterval(function () {
+  kontekst.clearRect(0, 0, 200, 200);
+  kontekst.fillRect(0, 0, rozmiar, rozmiar);
+
+  rozmiar++;
+  if (rozmiar > 200) {
+    rozmiar = 0;
+  }
+}, 30);
+
+    </script>
+</body>
+</html>

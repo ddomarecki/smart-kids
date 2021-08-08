@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auta</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        var Auto = function (x, y) {
+            this.x = x;
+            this.y = y;
+        };
+
+        //w przeglądarce teraz wpisujemy:
+        //var tesla = new Auto(10,20);
+        //tesla
+        //Auto{x: 10, y: 20}
+        //słowo kluczowe new to dla JS informacja, że wywołujemy konstruktor, aby utworzyć nowy obiekt.
+        //powyżej tworzymy obiekt auto o nazwie tesla.
+
+        //kod new Auto(10, 20) nakazuje interpretatorowi JS aby, używając konstruktora Auto, utworzył obiekt,
+        //przesłał argumenty 10 i 20 do właściwości x i y i zwrócił ten obiekt. Ten zwrócony 
+        // obiekt przypisujemy później zmiennej tesla za pomocą instrukcji var tesla.
+
+        var rysujAuto = function (auto) {
+            var autoHtml = '<img src="http://nostarch.com/images/car.png">';
+
+            var autoElement = $(autoHtml);
+
+            autoElement.css({
+                position: "absolute",
+                left: auto.x,
+                top: auto.y
+            });
+
+            $("body").append(autoElement);
+
+        };
+
+        var tesla = new Auto(20, 20);
+        var nissan = new Auto(100, 200);
+
+        rysujAuto(tesla);
+        rysujAuto(nissan);
+
+        /* 
+        w tym przypadku używamy konstruktora Auto do utworzenia dwóch obiektów auto, jednego ze 
+        współrzędnymi (20, 20), a drugiego o współrzędnych (100, 200), a następnie używamy metody
+        rysujAuto, aby narysować oba w przeglądarce.
+        */
+    </script>
+</body>
+
+</html>

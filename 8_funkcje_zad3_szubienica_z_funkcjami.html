@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* FUNKCJE */
+
+        var wybierzSlowo = function () {
+            //zwroc losowe slowo
+            var slowa = ["javascript", "monter", "niesamowity", "lampart"];
+            var slowo = slowa[Math.floor(Math.random() * slowa.length)];
+            return slowo;
+        };
+
+        var zbudujTabliceZOdpowiedziami = function (slowo) {
+            //zwroc tablice z odpowiedziami
+            var odpowiedzi = [];
+            for (var i = 0; i < slowo.length; i++) {
+                odpowiedzi[i] = "_";
+            }
+            return odpowiedzi;
+        };
+
+        var pokazBiezacyWynik = function (odpowiedzi) {
+            //za pomocą funkcji alert pokaż graczowi wynik
+            alert(odpowiedzi.join(" "));
+        };
+
+        var wczytajStrzal = function () {
+            //pobierz strzał za pomocą funkcji prompt
+            var strzal = prompt(
+                "podaj literę lub kliknij Anuluj, aby zakończyć grę."); //w przypadku anuluj zmienna ma wartość null
+            return strzal;
+        };
+
+        var aktualizujStanGry = function (strzal, slowo, odpowiedzi) {
+            //zaktualizuj tablice odpowiedzi i zwroc liczbe pokazujaca
+            //ile razy strzał wystepuje w slowie, aby mozna bylo
+            //zaktualizować tablicę pozostaleLitery
+            //zaktualizuj stan gry na podstawie strzału
+            var counter = 0;
+            for (var j = 0; j < slowo.length; j++) {
+                if (slowo[j] === strzal) {
+                    odpowiedzi[j] = strzal;
+                    counter += 1;
+                }
+            }
+            return counter;
+        };
+
+        var pokazOdpowiedzIPogratulujGraczowi = function (odpowiedzi) {
+            //Za pomoca funkcji alert pokaz odpowiedź i pogratuluj graczowi
+            alert(odpowiedzi.join(" "));
+            alert("Dobra robota! Szukane słowo to " + slowo);
+        };
+
+        /* KONIEC FUNKCJI */
+
+        var slowo = wybierzSlowo();
+        var odpowiedzi = zbudujTabliceZOdpowiedziami(slowo);
+        var pozostaleLitery = slowo.length;
+
+        //Główna pętla gry
+        while (pozostaleLitery > 0) {
+            //Pokaż graczowi bieżący wynik
+            pokazBiezacyWynik(odpowiedzi);
+            //Wczytaj strzał użytkownika
+            var strzal = wczytajStrzal();
+            if (strzal === null) {
+                //Wyjdz z glownej petli gry
+                break;
+            } else if (strzal.length !== 1) {
+                alert("Proszę podaj tylko jedną literę.");
+            } else {
+                var prawidloweStrzaly = aktualizujStanGry(strzal, slowo, odpowiedzi);
+                pozostaleLitery -= prawidloweStrzaly;
+            }
+            //koniec glownej petli gry
+        }
+        //Pokaz odpowiedz i zloz graczowi gratulacje
+        pokazOdpowiedzIPogratulujGraczowi(odpowiedzi);
+    </script>
+</body>
+
+</html>

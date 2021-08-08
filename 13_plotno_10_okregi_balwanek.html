@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+
+    <script>
+        // var plotno = document.getElementById("plotno");
+        // var kontekst = plotno.getContext("2d");
+        // kontekst.fillRect(0, 0, 10, 10);
+        // document.getElementById("plotno").getContext("2d").fillRect(0, 0, 10, 10)
+
+        //okręgi balwanek
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+
+        var okrag = function (x, y, promien, wypelnijokrag) {
+            kontekst.beginPath();
+            kontekst.arc(x, y, promien, 0, Math.PI * 2, false);
+            kontekst.stroke();
+            if (wypelnijokrag) {
+                kontekst.fill(); 
+            }
+        }
+
+        kontekst.lineWidth = 4;
+
+        kontekst.strokeStyle = "Black";
+        okrag(100, 100, 30, false);
+
+        okrag(100, 170, 40);
+
+        okrag(100, 150, 4, true);
+        okrag(100, 170, 4, true);
+        okrag(100, 190, 4, true);
+
+        okrag(110, 95, 4, true);
+        okrag(90, 95, 4, true);
+
+        kontekst.strokeStyle = "Orange";
+        kontekst.fillStyle = "Orange"; // kolor wypełnienia okręgu
+        okrag(100, 105, 4, true);
+
+
+
+
+        
+
+       
+
+    </script>
+
+</body>
+
+</html>

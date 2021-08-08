@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sterowanie za pomocą klawiszy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+        //107 +
+        //109 -
+
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        var szerokosc = plotno.width;
+        var wysokosc = plotno.height;
+
+        var okrag = function (x, y, promien, wypelnijOkrag) {
+            kontekst.beginPath();
+            kontekst.arc(x, y, promien, 0, Math.PI * 2, false);
+            if (wypelnijOkrag) {
+                kontekst.fill();
+            } else {
+                kontekst.stroke();
+            }
+        };
+
+        //konstruktor Piłka
+        var Pilka = function () {
+            var speed = this.szybkosc;
+            this.x = szerokosc / 2;
+            this.y = wysokosc / 2;
+            this.szybkosc = 5;
+            this.xSzybkosc = 1;
+            this.ySzybkosc = 0;
+            this.promien = 10;
+
+        };
+
+        //aktualizuj pozycję piłki na podstawie jej szybkości
+        Pilka.prototype.przesuwaj = function () {
+            this.x += this.xSzybkosc * this.szybkosc;
+            this.y += this.ySzybkosc * this.szybkosc;
+
+
+
+            if (this.x < 0 || this.x > szerokosc) {
+        this.xSzybkosc = -this.xSzybkosc;
+      } else if (this.y < 0 || this.y > wysokosc) {
+        this.ySzybkosc = -this.ySzybkosc;
+      }
+    }
+
+/*
+            if (this.x < 0) {
+                this.xSzybkosc = this.szybkosc;
+            } else if (this.x > szerokosc) {
+                this.xSzybkosc = this.szybkosc * -1;
+            } else if (this.y < 0) {
+                this.ySzybkosc = this.szybkosc * 1;
+            } else if (this.y > wysokosc) {
+                this.ySzybkosc = this.szybkosc * -1;
+            }
+        };
+*/
+        //narysuj piłkę w jej bieżącej pozycji
+        Pilka.prototype.rysuj = function () {
+            okrag(this.x, this.y, this.promien, true);
+        };
+
+        //ustaw kierunek piłki na podstawie łańcucha
+        Pilka.prototype.ustawKierunek = function (kierunek) {
+            if (kierunek === "gora") {
+                this.xSzybkosc = 0;
+                this.ySzybkosc = -1;
+            } else if (kierunek === "dol") {
+                this.xSzybkosc = 0;
+                this.ySzybkosc = 1;
+            } else if (kierunek === "lewa") {
+                this.xSzybkosc = -1;
+                this.ySzybkosc = 0;
+            } else if (kierunek === "prawa") {
+                this.xSzybkosc = 1;
+                this.ySzybkosc = 0;
+            } else if (kierunek === "stop") {
+                this.xSzybkosc = 0;
+                this.ySzybkosc = 0;
+            }
+        }
+
+        //utwórz obiekt piłka
+        var pilka = new Pilka();
+
+        //obiekt do przekształcenia kodów i klawiszy na nazwy działań
+        var dzialaniaKlawiszy = {
+            32: "stop",
+            37: "lewa",
+            38: "gora",
+            39: "prawa",
+            40: "dol"
+        }
+
+        //funkcja obsługi zdarzenia keydown
+        //wywoływana dla każdego naciśnięcia klawisza
+        $("body").keydown(function (zdarzenie) {
+            var kierunek = dzialaniaKlawiszy[zdarzenie.keyCode];
+            console.log(zdarzenie.keyCode);
+            pilka.ustawKierunek(kierunek);
+        });
+
+        var szybkosci = {
+            107: "plus",
+            109: "minus",
+            187: "wielkoscPlus",
+            189: "wielkoscMinus"
+        }
+
+        $("body").keydown(function (zdarzenie) {
+            var zmienSzybkosc = szybkosci[zdarzenie.keyCode];
+            if (zmienSzybkosc === "plus" && pilka.szybkosc <= 20) {
+                pilka.szybkosc +=1;
+                pilka.promien +=1;
+            } else if (zmienSzybkosc === "minus" && pilka.szybkosc >= 1) {
+                pilka.szybkosc -=1;
+            }
+            else if (zmienSzybkosc === "wielkoscPlus") {
+                pilka.promien +=1;
+            } else if (zmienSzybkosc === "wielkoscMinus" && pilka.promien >=1) {
+                pilka.promien -=1;
+            }
+        });
+
+        //funkcja odpowiedzialna za animację, wywołyywana co 30ms
+        setInterval(function () {
+            kontekst.clearRect(0, 0, szerokosc, wysokosc);
+
+            pilka.rysuj();
+            pilka.przesuwaj();
+
+            kontekst.strokeRect(0, 0, szerokosc, wysokosc);
+        }, 30);
+    </script>
+
+</body>
+
+</html>

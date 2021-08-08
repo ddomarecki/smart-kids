@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animacja na plotnie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="plotno" width="500" height="500"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        var plotno = document.getElementById("plotno");
+        var kontekst = plotno.getContext("2d");
+        var pozycja = 0;
+
+        setInterval(function () {
+            kontekst.clearRect(0, 0, 500, 500);
+            kontekst.fillRect(pozycja, 0, 20, 20);
+            pozycja++;
+            if (pozycja > 500) {
+                pozycja = 0;
+            }
+        }, 30);
+    </script>
+
+</body>
+
+</html>

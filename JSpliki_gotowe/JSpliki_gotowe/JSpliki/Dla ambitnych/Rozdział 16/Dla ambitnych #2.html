@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W±ø!</title>
+</head>
+<body>
+    <canvas id="p≥Ûtno" width="400" height="400"></canvas>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <script>
+    var p≥Ûtno = document.getElementById("p≥Ûtno");
+    var kontekst = p≥Ûtno.getContext("2d");
+
+    var szeroko∂Ê = p≥Ûtno.width;
+    var wysoko∂Ê = p≥Ûtno.height;
+
+    var rozmiarBloku = 10;
+    var szeroko∂ÊWBlokach = szeroko∂Ê / rozmiarBloku;
+    var wysoko∂ÊWBlokach = wysoko∂Ê / rozmiarBloku;
+
+    var wynik = 0;
+
+    var rysujObramowanie = function () {
+      kontekst.fillStyle = "Gray";
+      kontekst.fillRect(0, 0, szeroko∂Ê, rozmiarBloku);
+      kontekst.fillRect(0, wysoko∂Ê - rozmiarBloku, szeroko∂Ê, rozmiarBloku);
+      kontekst.fillRect(0, 0, rozmiarBloku, wysoko∂Ê);
+      kontekst.fillRect(szeroko∂Ê - rozmiarBloku, 0, rozmiarBloku, wysoko∂Ê);
+    };
+
+    var rysujWynik = function () {
+      kontekst.font = "20px Courier";
+      kontekst.fillStyle = "Black";
+      kontekst.textAlign = "left";
+      kontekst.textBaseline = "top";
+      kontekst.fillText("Wynik: " + wynik, rozmiarBloku, rozmiarBloku);
+    };
+
+    var koniecGry = function () {
+      //clearInterval(intervalId);
+      kontekst.font = "60px Courier";
+      kontekst.fillStyle = "Black";
+      kontekst.textAlign = "center";
+      kontekst.textBaseline = "middle";
+      kontekst.fillText("Game Over", szeroko∂Ê / 2, wysoko∂Ê / 2);
+    };
+
+
+    setInterval(function () {
+      kontekst.clearRect(0, 0, szeroko∂Ê, wysoko∂Ê);
+      rysujObramowanie();
+      rysujWynik();
+      wynik++;
+    }, 100);
+    </script>
+</body>
+</html>
